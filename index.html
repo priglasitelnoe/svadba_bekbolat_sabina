@@ -277,19 +277,55 @@
     .music-toggle {
       position: fixed;
       right: max(14px, calc((100vw - 470px) / 2 + 14px));
-      bottom: 16px;
+      bottom: 18px;
       z-index: 20;
-      min-height: 42px;
-      padding: 11px 15px;
-      border: 1px solid rgba(90, 63, 52, 0.16);
-      border-radius: 999px;
-      color: var(--brown);
-      background: rgba(255, 250, 244, 0.82);
-      box-shadow: 0 14px 40px rgba(70, 48, 38, 0.18);
-      backdrop-filter: blur(16px);
-      font-size: 12px;
+      width: 38px;
+      height: 38px;
+      min-height: 38px;
+      padding: 0;
+      border: 1px solid rgba(116, 84, 68, 0.14);
+      border-radius: 50%;
+      color: rgba(79, 57, 47, 0.72);
+      background:
+        radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.88), transparent 30%),
+        rgba(255, 250, 244, 0.62);
+      box-shadow: 0 10px 28px rgba(57, 39, 31, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.48);
+      backdrop-filter: blur(18px);
+      font-family: var(--serif);
+      font-size: 18px;
       font-weight: 800;
-      letter-spacing: 0.02em;
+      line-height: 1;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+
+    .music-toggle::after {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border: 1px solid rgba(216, 170, 168, 0.18);
+      border-radius: inherit;
+      opacity: 0;
+      transform: scale(0.86);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .music-toggle:hover {
+      transform: translateY(-2px) scale(1.03);
+      color: rgba(79, 57, 47, 0.9);
+      box-shadow: 0 14px 34px rgba(57, 39, 31, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.58);
+    }
+
+    .music-toggle.is-playing {
+      color: rgba(79, 57, 47, 0.86);
+      background:
+        radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.9), transparent 30%),
+        rgba(234, 212, 208, 0.68);
+    }
+
+    .music-toggle.is-playing::after {
+      opacity: 1;
+      transform: scale(1);
+      animation: musicPulse 2.4s ease infinite;
     }
 
     .hero {
@@ -475,7 +511,7 @@
 
     .contacts {
       display: grid;
-      gap: 12px;
+      gap: 10px;
       margin-top: 20px;
     }
 
@@ -483,8 +519,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 56px;
-      padding: 14px 16px;
+      min-height: 52px;
+      padding: 13px 16px;
       border-radius: 20px;
       color: var(--brown);
       background: rgba(255, 252, 247, 0.7);
@@ -497,7 +533,59 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 8px;
-      margin-top: 22px;
+      margin-top: 18px;
+    }
+
+    .timer-section {
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(216, 170, 168, 0.22), transparent 34%),
+        radial-gradient(circle at 10% 100%, rgba(216, 195, 173, 0.24), transparent 38%),
+        linear-gradient(155deg, rgba(255, 252, 247, 0.9), rgba(246, 236, 226, 0.7));
+    }
+
+    .timer-section::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(154, 128, 109, 0.1);
+      border-radius: 26px;
+      pointer-events: none;
+    }
+
+    .timer-head {
+      position: relative;
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .timer-title {
+      margin: 0;
+      color: var(--brown);
+      font-family: var(--display);
+      font-size: clamp(38px, 11vw, 56px);
+      font-style: italic;
+      font-weight: 600;
+      line-height: 0.96;
+    }
+
+    .timer-heart {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto;
+      border: 1px solid rgba(216, 170, 168, 0.28);
+      border-radius: 50%;
+      color: rgba(174, 125, 118, 0.82);
+      background: rgba(255, 250, 244, 0.58);
+      box-shadow: 0 12px 28px rgba(78, 55, 43, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.56);
+      font-family: var(--serif);
+      font-size: 23px;
+      font-style: italic;
+      line-height: 1;
     }
 
     .time-card {
@@ -505,8 +593,9 @@
       padding: 13px 6px 10px;
       border-radius: 22px;
       text-align: center;
-      background: rgba(255, 252, 247, 0.72);
+      background: rgba(255, 252, 247, 0.64);
       border: 1px solid rgba(136, 101, 80, 0.11);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.58), 0 10px 22px rgba(78, 55, 43, 0.06);
     }
 
     .time-number {
@@ -530,8 +619,72 @@
 
     .rsvp-form {
       display: grid;
-      gap: 14px;
-      margin-top: 20px;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .rsvp-note {
+      margin: 2px 0 16px;
+      padding: 14px;
+      border: 1px solid rgba(154, 128, 109, 0.16);
+      border-radius: 22px;
+      color: var(--muted);
+      background:
+        radial-gradient(circle at top right, rgba(216, 170, 168, 0.18), transparent 46%),
+        rgba(255, 252, 247, 0.64);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.58), 0 12px 28px rgba(78, 55, 43, 0.07);
+    }
+
+    .rsvp-note-title {
+      margin: 0 0 8px;
+      color: var(--brown);
+      font-family: var(--serif);
+      font-size: clamp(19px, 5.1vw, 24px);
+      font-style: italic;
+      font-weight: 700;
+      line-height: 1.05;
+    }
+
+    .rsvp-note p {
+      margin: 0 0 8px;
+      font-size: clamp(13px, 3.35vw, 14px);
+      line-height: 1.5;
+    }
+
+    .rsvp-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .rsvp-note-links {
+      display: grid;
+      gap: 7px;
+      margin-top: 10px;
+    }
+
+    .rsvp-note-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 38px;
+      padding: 8px 12px;
+      border-radius: 15px;
+      color: var(--brown);
+      background: rgba(255, 250, 244, 0.72);
+      border: 1px solid rgba(120, 86, 68, 0.1);
+      font-size: clamp(13px, 3.5vw, 15px);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      line-height: 1;
+    }
+
+    .rsvp-note-links a::after {
+      content: "tel";
+      color: var(--taupe);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.68;
     }
 
     .field {
@@ -551,7 +704,7 @@
     .field select {
       width: 100%;
       min-height: 52px;
-      padding: 13px 15px;
+      padding: 12px 15px;
       border: 1px solid rgba(111, 80, 63, 0.14);
       border-radius: 18px;
       outline: none;
@@ -593,10 +746,13 @@
 
     .reveal.is-visible .label,
     .reveal.is-visible .section-title,
+    .reveal.is-visible .timer-head,
     .reveal.is-visible .text-block,
     .reveal.is-visible .info-list,
     .reveal.is-visible .timer-grid,
+    .reveal.is-visible .timer-heart,
     .reveal.is-visible .rsvp-form,
+    .reveal.is-visible .rsvp-note,
     .reveal.is-visible .contacts {
       animation: softRise 0.9s ease both;
     }
@@ -605,10 +761,16 @@
       animation-delay: 0.08s;
     }
 
+    .reveal.is-visible .timer-head {
+      animation-delay: 0.08s;
+    }
+
     .reveal.is-visible .text-block,
     .reveal.is-visible .info-list,
     .reveal.is-visible .timer-grid,
+    .reveal.is-visible .timer-heart,
     .reveal.is-visible .rsvp-form,
+    .reveal.is-visible .rsvp-note,
     .reveal.is-visible .contacts {
       animation-delay: 0.16s;
     }
@@ -648,6 +810,17 @@
       }
     }
 
+    @keyframes musicPulse {
+      0%, 100% {
+        opacity: 0.36;
+        transform: scale(0.94);
+      }
+      50% {
+        opacity: 0.12;
+        transform: scale(1.14);
+      }
+    }
+
     @media (min-width: 700px) {
       body {
         padding: 0;
@@ -661,7 +834,7 @@
   </style>
 </head>
 <body>
-  <audio id="weddingAudio" src="WhatsApp Video 2026-04-25 at 22.16.07.mp4" autoplay loop preload="auto"></audio>
+  <audio id="weddingAudio" src="WhatsApp Video 2026-04-25 at 22.16.07.mp4" autoplay loop preload="auto" playsinline></audio>
 
   <section class="language-screen" id="languageScreen" aria-label="Выбор языка">
     <div class="language-card">
@@ -676,7 +849,7 @@
     </div>
   </section>
 
-  <button class="music-toggle" id="musicToggle" type="button">Включить музыку</button>
+  <button class="music-toggle" id="musicToggle" type="button" aria-label="Включить музыку">🔇</button>
 
   <div class="app">
     <header class="hero">
@@ -726,26 +899,12 @@
           <a class="btn" href="https://2gis.kz/almaty/geo/70000001104155462" target="_blank" rel="noopener">Открыть карту</a>
         </section>
 
-        <section class="section soft-block reveal">
-          <p class="label">Формат мероприятия</p>
-          <h2 class="section-title">18+</h2>
-          <div class="text-block">
-            <p>Просим отнестись с пониманием — мероприятие будет проходить в формате 18+. Надеемся на ваше понимание и поддержку.</p>
+        <section class="section timer-section reveal">
+          <div class="timer-head">
+            <p class="label">До свадьбы</p>
+            <h2 class="timer-title">осталось</h2>
+            <div class="timer-heart" aria-hidden="true">♡</div>
           </div>
-        </section>
-
-        <section class="section reveal">
-          <p class="label">Контакты</p>
-          <h2 class="section-title">Будем на связи</h2>
-          <div class="contacts">
-            <a class="contact-link" href="tel:+77076586071"><span>87076586071</span><span>Позвонить</span></a>
-            <a class="contact-link" href="tel:+77768107929"><span>87768107929</span><span>Позвонить</span></a>
-          </div>
-        </section>
-
-        <section class="section reveal">
-          <p class="label">До свадьбы осталось</p>
-          <h2 class="section-title">Обратный отсчёт</h2>
           <div class="timer-grid" aria-label="Таймер до свадьбы">
             <div class="time-card"><span class="time-number" data-time="days">0</span><span class="time-label">дней</span></div>
             <div class="time-card"><span class="time-number" data-time="hours">0</span><span class="time-label">часов</span></div>
@@ -757,6 +916,16 @@
         <section class="section reveal">
           <p class="label">Ответ</p>
           <h2 class="section-title">Подтвердите присутствие</h2>
+          <div class="rsvp-note">
+            <p class="rsvp-note-title">Формат мероприятия: 18+</p>
+            <p>Праздник пройдет без маленьких гостей. Надеемся на ваше понимание.</p>
+            <p>По всем вопросам можно связаться:</p>
+            <div class="rsvp-note-links">
+              <a href="tel:+77076586071">+7 707 658 60 71</a>
+              <a href="tel:+77768107929">+7 776 810 79 29</a>
+              <a href="tel:+77078939633">+7 707 893 96 33</a>
+            </div>
+          </div>
           <form class="rsvp-form" data-rsvp-form>
             <label class="field"><span>Имя</span><input type="text" name="name" required placeholder="Ваше имя" /></label>
             <label class="field"><span>Количество гостей</span><input type="number" name="guests" required min="1" value="1" /></label>
@@ -797,26 +966,12 @@
           <a class="btn" href="https://2gis.kz/almaty/geo/70000001104155462" target="_blank" rel="noopener">Картаны ашу</a>
         </section>
 
-        <section class="section soft-block reveal">
-          <p class="label">Формат</p>
-          <h2 class="section-title">18+</h2>
-          <div class="text-block">
-            <p>Той 18+ форматында өтетінін түсіністікпен қабылдауларыңызды сұраймыз. Түсіністік танытқандарыңызға рақмет.</p>
+        <section class="section timer-section reveal">
+          <div class="timer-head">
+            <p class="label">Тойға дейін</p>
+            <h2 class="timer-title">қалды</h2>
+            <div class="timer-heart" aria-hidden="true">♡</div>
           </div>
-        </section>
-
-        <section class="section reveal">
-          <p class="label">Байланыс</p>
-          <h2 class="section-title">Хабарласыңыз</h2>
-          <div class="contacts">
-            <a class="contact-link" href="tel:+77076586071"><span>87076586071</span><span>Қоңырау</span></a>
-            <a class="contact-link" href="tel:+77768107929"><span>87768107929</span><span>Қоңырау</span></a>
-          </div>
-        </section>
-
-        <section class="section reveal">
-          <p class="label">Тойға дейін қалды</p>
-          <h2 class="section-title">Қалған уақыт</h2>
           <div class="timer-grid" aria-label="Тойға дейінгі уақыт">
             <div class="time-card"><span class="time-number" data-time="days">0</span><span class="time-label">күн</span></div>
             <div class="time-card"><span class="time-number" data-time="hours">0</span><span class="time-label">сағат</span></div>
@@ -828,6 +983,16 @@
         <section class="section reveal">
           <p class="label">Жауап</p>
           <h2 class="section-title">Қатысуыңызды растаңыз</h2>
+          <div class="rsvp-note">
+            <p class="rsvp-note-title">Формат: 18+</p>
+            <p>Той кішкентай қонақтарсыз өтеді. Түсіністік танытқандарыңызға рақмет.</p>
+            <p>Барлық сұрақтар бойынша байланыс:</p>
+            <div class="rsvp-note-links">
+              <a href="tel:+77076586071">+7 707 658 60 71</a>
+              <a href="tel:+77768107929">+7 776 810 79 29</a>
+              <a href="tel:+77078939633">+7 707 893 96 33</a>
+            </div>
+          </div>
           <form class="rsvp-form" data-rsvp-form>
             <label class="field"><span>Аты-жөніңіз</span><input type="text" name="name" required placeholder="Аты-жөніңіз" /></label>
             <label class="field"><span>Қонақ саны</span><input type="number" name="guests" required min="1" value="1" /></label>
@@ -850,6 +1015,60 @@
     const audio = document.getElementById("weddingAudio");
     const weddingDate = new Date("2026-06-06T00:00:00+05:00");
     let isPlaying = false;
+    let firstInteractionFallbackReady = false;
+    let userPausedMusic = false;
+
+    function updateMusicButton() {
+      const isKazakh = document.documentElement.lang === "kk";
+      musicToggle.textContent = isPlaying ? "🔊" : "🔇";
+      musicToggle.classList.toggle("is-playing", isPlaying);
+      musicToggle.setAttribute("aria-label", isPlaying
+        ? (isKazakh ? "Әуенді өшіру" : "Выключить музыку")
+        : (isKazakh ? "Әуенді қосу" : "Включить музыку"));
+    }
+
+    async function playMusic() {
+      try {
+        audio.muted = false;
+        audio.volume = 0.72;
+        await audio.play();
+        isPlaying = true;
+        updateMusicButton();
+        return true;
+      } catch (error) {
+        isPlaying = false;
+        updateMusicButton();
+        return false;
+      }
+    }
+
+    function pauseMusic() {
+      audio.pause();
+      isPlaying = false;
+      updateMusicButton();
+    }
+
+    function tryAutoplayMusic() {
+      if (userPausedMusic || isPlaying) return;
+      playMusic().then((started) => {
+        if (!started) enableFirstInteractionFallback();
+      });
+    }
+
+    function enableFirstInteractionFallback() {
+      if (firstInteractionFallbackReady) return;
+      firstInteractionFallbackReady = true;
+
+      const startAfterInteraction = (event) => {
+        if (event.target instanceof Element && event.target.closest("#musicToggle")) return;
+        playMusic();
+        document.removeEventListener("pointerdown", startAfterInteraction);
+        document.removeEventListener("keydown", startAfterInteraction);
+      };
+
+      document.addEventListener("pointerdown", startAfterInteraction);
+      document.addEventListener("keydown", startAfterInteraction);
+    }
 
     function setLanguage(lang) {
       document.documentElement.lang = lang === "kz" ? "kk" : "ru";
@@ -857,7 +1076,7 @@
         block.hidden = block.dataset.content !== lang;
       });
       languageScreen.classList.add("is-hidden");
-      musicToggle.textContent = lang === "kz" ? "Әуенді қосу" : "Включить музыку";
+      updateMusicButton();
       heroLabel.textContent = lang === "kz" ? "Той күні" : "Свадебный день";
       heroTitle.textContent = lang === "kz" ? "Біздің той" : "Наша свадьба";
       heroCalendar.setAttribute("aria-label", lang === "kz" ? "Той күнінің күнтізбесі" : "Календарь даты свадьбы");
@@ -875,23 +1094,16 @@
       button.addEventListener("click", () => setLanguage(button.dataset.lang));
     });
 
-    musicToggle.addEventListener("click", async () => {
-      const isKazakh = document.documentElement.lang === "kk";
+    musicToggle.addEventListener("click", async (event) => {
+      event.stopPropagation();
       if (isPlaying) {
-        audio.pause();
-        isPlaying = false;
-        musicToggle.textContent = isKazakh ? "Әуенді қосу" : "Включить музыку";
+        userPausedMusic = true;
+        pauseMusic();
         return;
       }
 
-      try {
-        await audio.play();
-        isPlaying = true;
-        musicToggle.textContent = isKazakh ? "Әуенді өшіру" : "Выключить музыку";
-      } catch (error) {
-        isPlaying = false;
-        musicToggle.textContent = isKazakh ? "Әуен қосылмады" : "Музыка не включилась";
-      }
+      userPausedMusic = false;
+      await playMusic();
     });
 
     function updateTimer() {
@@ -945,6 +1157,17 @@
     });
 
     updateTimer();
+    updateMusicButton();
+    audio.load();
+    tryAutoplayMusic();
+    document.addEventListener("DOMContentLoaded", tryAutoplayMusic);
+    window.addEventListener("load", tryAutoplayMusic);
+    window.addEventListener("pageshow", tryAutoplayMusic);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) tryAutoplayMusic();
+    });
+    setTimeout(tryAutoplayMusic, 500);
+    setTimeout(tryAutoplayMusic, 1500);
     setInterval(updateTimer, 1000);
     window.addEventListener("scroll", revealVisible, { passive: true });
   </script>
